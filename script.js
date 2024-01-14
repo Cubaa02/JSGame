@@ -31,7 +31,7 @@ const getRandomWord = () => {
 const gameOver = (isVictory) => {
     // Po dokončení hry.. zobrazí se modální okno s příslušnými údaji
     const modalText = isVictory ? `You found the word:` : 'The correct word was:';
-    gameModal.querySelector("img").src = `images/${isVictory ? 'victory' : 'lost'}.png`;
+    gameModal.querySelector("img").src = `./images/${isVictory ? 'victory' : 'lost'}.png`;
     gameModal.querySelector("h4").innerText = isVictory ? 'Congrats!' : 'Game Over!';
     gameModal.querySelector("p").innerHTML = `${modalText} <b>${currentWord}</b>`;
     gameModal.classList.add("show");
