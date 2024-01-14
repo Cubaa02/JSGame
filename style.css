@@ -134,7 +134,7 @@ body {
     max-width: 130px;
     margin-bottom: 20px;
 }
-.game-modal img[src="images/victory.png"] {
+.game-modal img[src="./images/victory.png"] {
     margin-left: -10px;
 }
 .game-modal h4 {
