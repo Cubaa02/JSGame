@@ -31,7 +31,7 @@ const getRandomWord = () => {
 const gameOver = (isVictory) => {
     // Po dokončení hry.. zobrazí se modální okno s příslušnými údaji
     const modalText = isVictory ? `You found the word:` : 'The correct word was:';
-    gameModal.querySelector("img").src = `./images/${isVictory ? 'victory' : 'lost'}.png`;
+    gameModal.querySelector("img").src = `images/${isVictory ? 'victory' : 'lost'}.png`;
     gameModal.querySelector("h4").innerText = isVictory ? 'Congrats!' : 'Game Over!';
     gameModal.querySelector("p").innerHTML = `${modalText} <b>${currentWord}</b>`;
     gameModal.classList.add("show");
@@ -66,8 +66,17 @@ for (let i = 97; i <= 122; i++) {
     const button = document.createElement("button");
     button.innerText = String.fromCharCode(i);
     keyboardDiv.appendChild(button);
-    button.addEventListener("click", (e) => initGame(e.target, String.fromCharCode(i)));
+    button.addEventListener("click", (e) => initGame(e.target, e.target.innerText));
 }
+
+// Přidání posluchače klávesnice
+document.addEventListener("keydown", (e) => {
+    const pressedKey = e.key.toLowerCase();
+    const button = Array.from(keyboardDiv.querySelectorAll("button")).find(btn => btn.innerText.toLowerCase() === pressedKey);
+    if (button && !button.disabled) {
+        initGame(button, pressedKey);
+    }
+});
 
 getRandomWord();
 playAgainBtn.addEventListener("click", getRandomWord);
